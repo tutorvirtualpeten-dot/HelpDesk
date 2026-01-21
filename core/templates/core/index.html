@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ SITE_NAME }} - Home</title>
+    <style>
+        :root {
+            --primary: {{ PRIMARY_COLOR }};
+            --secondary: {{ SECONDARY_COLOR }};
+            --accent: {{ ACCENT_COLOR }};
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+        h1 { color: var(--primary); }
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.375rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Welcome to {{ SITE_NAME }}</h1>
+        <p>System is running successfully.</p>
+        <p>Ticket Prefix: <strong>{{ TICKET_PREFIX }}</strong></p>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }} ({{ user.role }})</p>
+            <a href="/admin/" class="btn">Go to Admin Panel</a>
+        {% else %}
+            <a href="/admin/" class="btn">Login to Admin</a>
+        {% endif %}
+    </div>
+</body>
+</html>
